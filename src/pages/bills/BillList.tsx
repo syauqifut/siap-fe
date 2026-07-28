@@ -154,7 +154,7 @@ export default function BillList() {
         action={
           <Button render={<Link to="/bills/new" />}>
             <PlusIcon data-icon="inline-start" />
-            Generate Tagihan
+            Buat Tagihan
           </Button>
         }
       />
@@ -296,7 +296,6 @@ export default function BillList() {
                   <TableHead className="w-36">Jenis Iuran</TableHead>
                   <TableHead className="w-36">Jatuh Tempo</TableHead>
                   <TableHead className="w-32 text-right">Nominal</TableHead>
-                  <TableHead className="w-32 text-right">Terbayar</TableHead>
                   <TableHead className="w-28">Status</TableHead>
                 </TableRow>
               </TableHeader>
@@ -318,9 +317,6 @@ export default function BillList() {
                     </TableCell>
                     <TableCell className="whitespace-nowrap text-right">
                       {formatCurrency(bill.amount)}
-                    </TableCell>
-                    <TableCell className="whitespace-nowrap text-right">
-                      {formatCurrency(bill.paid_amount)}
                     </TableCell>
                     <TableCell>
                       <StatusBadge

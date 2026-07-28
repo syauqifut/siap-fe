@@ -137,7 +137,7 @@ export function GenerateBillDialog({
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Generate Tagihan</DialogTitle>
+            <DialogTitle>Buat Tagihan</DialogTitle>
             <DialogDescription>
               Buat tagihan baru untuk rumah {houseNumber}. Tagihan akan langsung
               bisa dipilih untuk dibayar.

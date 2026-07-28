@@ -179,11 +179,11 @@ export default function BillForm() {
     <>
       <div className="max-w-md space-y-4">
         <PageHeader
-          title="Generate Tagihan"
+          title="Buat Tagihan"
           description="Buat tagihan manual untuk satu rumah atau semua rumah yang sedang dihuni."
           breadcrumbs={[
             { label: 'Tagihan', to: '/bills' },
-            { label: 'Generate' },
+            { label: 'Buat' },
           ]}
           backTo="/bills"
         />
@@ -370,7 +370,7 @@ export default function BillForm() {
                     ? 'Menyimpan...'
                     : target === 'all'
                       ? 'Generate ke Semua Rumah'
-                      : 'Generate Tagihan'}
+                      : 'Buat Tagihan'}
                 </Button>
               </form>
             </CardContent>

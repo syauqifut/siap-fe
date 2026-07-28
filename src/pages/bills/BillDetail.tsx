@@ -26,7 +26,7 @@ export default function BillDetail() {
         description="Informasi tagihan. Data tidak dapat diubah atau dihapus."
         breadcrumbs={[
           { label: 'Tagihan', to: '/bills' },
-          { label: `#${bill.id}` },
+          { label: `${bill.fee_type.name} — ${bill.house.house_number}` },
         ]}
         backTo="/bills"
         action={
@@ -72,16 +72,6 @@ export default function BillDetail() {
             <div>
               <dt className="text-sm text-muted-foreground">Nominal</dt>
               <dd className="font-medium">{formatCurrency(bill.amount)}</dd>
-            </div>
-            <div>
-              <dt className="text-sm text-muted-foreground">Terbayar</dt>
-              <dd className="font-medium">{formatCurrency(bill.paid_amount)}</dd>
-            </div>
-            <div>
-              <dt className="text-sm text-muted-foreground">Sisa</dt>
-              <dd className="font-medium">
-                {formatCurrency(Number(bill.amount) - Number(bill.paid_amount))}
-              </dd>
             </div>
             <div>
               <dt className="text-sm text-muted-foreground">Dibuat Pada</dt>
