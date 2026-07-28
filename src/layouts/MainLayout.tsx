@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import {
   BarChart3Icon,
   ChevronDownIcon,
@@ -8,7 +8,6 @@ import {
   DatabaseIcon,
   HomeIcon,
   LayoutDashboardIcon,
-  LogOutIcon,
   ReceiptIcon,
   UsersIcon,
   WalletIcon,
@@ -16,8 +15,6 @@ import {
 import type { LucideIcon } from 'lucide-react'
 
 import { Breadcrumbs } from '@/components/shared/Breadcrumbs'
-import { Button } from '@/components/ui/button'
-import { useAuth } from '@/context/AuthContext'
 import {
   PageHeaderProvider,
   usePageHeaderContext,
@@ -78,8 +75,7 @@ function NavItem({
 
 function MainLayoutContent() {
   const { pathname } = useLocation()
-  const navigate = useNavigate()
-  const { user, logout } = useAuth()
+  // const { user, logout } = useAuth()
   const { state: pageHeader } = usePageHeaderContext()
   const isMasterDataActive = pathname.startsWith('/master-data')
   const isReportsActive = pathname.startsWith('/reports')
@@ -98,10 +94,10 @@ function MainLayoutContent() {
     }
   }, [isReportsActive])
 
-  const handleLogout = async () => {
-    await logout()
-    navigate('/login', { replace: true })
-  }
+  // const handleLogout = async () => {
+  //   await logout()
+  //   navigate('/login', { replace: true })
+  // }
 
   return (
     <div className="flex h-svh flex-col overflow-hidden bg-background">
@@ -232,7 +228,7 @@ function MainLayoutContent() {
             </div>
           </nav>
 
-          <div className="border-t p-3 space-y-2">
+          {/* <div className="border-t p-3 space-y-2">
             {user && (
               <div className="px-3 py-1">
                 <p className="truncate text-sm font-medium">{user.name}</p>
@@ -250,7 +246,7 @@ function MainLayoutContent() {
               <LogOutIcon data-icon="inline-start" />
               Keluar
             </Button>
-          </div>
+          </div> */}
         </aside>
 
         <main className="min-w-0 flex-1 overflow-y-auto">

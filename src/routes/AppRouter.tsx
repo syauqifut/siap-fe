@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import { AuthProvider } from '@/context/AuthContext'
 import MainLayout from '@/layouts/MainLayout'
-import Login from '@/pages/auth/Login'
+// import Login from '@/pages/auth/Login'
 import Dashboard from '@/pages/dashboard/Dashboard'
 import ExpenseCategoryForm from '@/pages/expense-categories/ExpenseCategoryForm'
 import ExpenseCategoryList from '@/pages/expense-categories/ExpenseCategoryList'
@@ -34,7 +34,7 @@ export default function AppRouter() {
       <ScrollToTop />
       <AuthProvider>
         <Routes>
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/login" element={<Login />} /> */}
 
         <Route element={<ProtectedRoute />}>
           <Route element={<MainLayout />}>

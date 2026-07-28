@@ -7,11 +7,10 @@ import {
   useState,
   type ReactNode,
 } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useQueryClient } from '@tanstack/react-query'
 
 import { authService } from '@/services/authService'
-import { AUTH_TOKEN_KEY, setUnauthorizedHandler } from '@/services/axios'
+import { AUTH_TOKEN_KEY } from '@/services/axios'
 import type { LoginPayload, User } from '@/types/auth'
 
 interface AuthContextValue {
@@ -25,7 +24,6 @@ interface AuthContextValue {
 const AuthContext = createContext<AuthContextValue | null>(null)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const navigate = useNavigate()
   const queryClient = useQueryClient()
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -48,29 +46,33 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [clearAuth])
 
+  // useEffect(() => {
+  //   setUnauthorizedHandler(() => {
+  //     clearAuth()
+  //     navigate('/login', { replace: true })
+  //   })
+
+  //   return () => setUnauthorizedHandler(null)
+  // }, [clearAuth, navigate])
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem(AUTH_TOKEN_KEY)
+
+  //   if (!token) {
+  //     setIsLoading(false)
+  //     return
+  //   }
+
+  //   authService
+  //     .getCurrentUser()
+  //     .then(setUser)
+  //     .catch(() => clearAuth())
+  //     .finally(() => setIsLoading(false))
+  // }, [clearAuth])
+
   useEffect(() => {
-    setUnauthorizedHandler(() => {
-      clearAuth()
-      navigate('/login', { replace: true })
-    })
-
-    return () => setUnauthorizedHandler(null)
-  }, [clearAuth, navigate])
-
-  useEffect(() => {
-    const token = localStorage.getItem(AUTH_TOKEN_KEY)
-
-    if (!token) {
-      setIsLoading(false)
-      return
-    }
-
-    authService
-      .getCurrentUser()
-      .then(setUser)
-      .catch(() => clearAuth())
-      .finally(() => setIsLoading(false))
-  }, [clearAuth])
+    setIsLoading(false)
+  }, [])
 
   const login = useCallback(async (payload: LoginPayload) => {
     const { user: loggedInUser, token } = await authService.login(payload)
@@ -82,7 +84,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const value = useMemo(
     () => ({
       user,
-      isAuthenticated: Boolean(user),
+      isAuthenticated: true, // Boolean(user),
       isLoading,
       login,
       logout,
